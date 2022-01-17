@@ -66,3 +66,41 @@ bin/zookeeper-server-start.sh config/zookeeper.properties
 # start kafka broker service
 bin/kafka-server-start.sh config/server.properties
 ```
+
+## Topic, Partition, Segment
+
+### Topic
+
+Topic is where message save in kafka. (Logical expression)
+
+### Producer
+
+Application that produces message and send to kafka's `topic`.
+
+### Consumer
+
+Application that get message from `topic` for cosumes it.
+
+### Consmer Group
+
+Set of `ConsumerS` that cooperate for consuming message from `topic`
+
+A `Consumer` is in a `Consumer Group`, Consumers in `Consumer Group` are cooperating to process `topic`'s message as distributed and parallel
+
+## Decoupling of Producer and Comsumer
+
+Producer and Consumer don't know each other. Producer and Consumer write and read commit log in its own interval.
+
+`Consumers` belong to different `Consumer Group` have no relationship with each other and they can read commit log which is in other offset.
+
+## Kafka Commit Log
+
+Datastructure that can only append, not change.
+
+Commit Log : Event always append to end of log and it is imutable.
+
+Offset: Position of `Event` in commit log
+
+## Topic Partition, Segment
+
+Partition : Commit Log. A Topic consists of at least one partition. Use multiple partition to improve throughput in distributed paralle system.
